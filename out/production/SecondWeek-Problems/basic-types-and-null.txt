@@ -1,0 +1,51 @@
+1- val ile var arasındaki fark nedir?
+# En temel fark val değişkeninin immutable referansa var değişkeninin ise mutable referansa sahip olmasıdır.
+    Peki bu ne demektir?
+    > val işaretçisi ile tanımlanan değerler ilk kez değer atamasından sonra bir daha değiştirilemezler.
+    > var ile tanımlananlar ise herhangi bir anda tekrar değiştirilebilir.
+
+2- Bir var değişkeni val gibi davranmasını nasıl sağlayabiliriz val kelimesini kullanmadan? Bunu neden yapmak isteriz? Örnek bir senaryo verin.
+# Sınıf(class) sisteminde var değişkeninin alt tarafına set() ve get() fonksiyonları tanımlayabiliriz. Burada set() değerini private yaparak değişkenlik özelliğini kapatabiliriz.
+    Örnek senaryo olarak;
+    > Bir ders notları sınıfı oluşturduğumuzu düşünelim. Oluşturulan sınıfta özellik olarak matematik ders notu olsun. Bu ders notu var olarak tanımlanır ve private set olarak düzenlenir.
+    bu durumda ders notu ancak ders notları sınıfında üretilen nesne üzerinden kontrol edilebilir olur. Dışarıdan herhangi değişikliğie açık değildir.
+
+3- "Değişmez" (Immutable) ve "Salt Okunur" (ReadOnly) kavramlarını açıklayın. val değişkenler neden aslında "değişmez" değil de "salt okunur" olarak açıklanmalıdır?
+# Immutable terimi oluşturulduktan sonra üzerinde hiçbir şekilde değişiklik yapılamayan objeler için kullanılır. ReadOnly kavramı ise programlama dilince önceden imzalanmış yani belirtilmiş bir nesnenin değerinin daha sonra değiştirilememesi ile ilgilidir..
+    > Bu duruma göre val değişkenlere salt okunur demenin doğru olmasının sebebi oluşturulduktan sonra yeniden değer atanamaması. Immutable değerler ise hiçbir şekilde değiştirilemez oluyorlar.
+    > val değer oluşturulunca ilk değer ataması sonradan yapılabilir.
+
+5- "Tip Çıkarımı" (Type inference) kavramını açıklayın. Hangi durumlarda tip belirtmek kesin olarak gereklidir?
+# Programa dahil etmek istediğimiz verinin programdaki karşılığını bulmak tip çıkarımıdır. Bir isim kaydedilecekse String, sayısal değer ise int/long/double vb. değişken tipini belirleyebiliriz.
+    > Değişkeni daha sonradan tanımlayacaksak, ilk imzalandığı yerde tipini vermek zorundayız. Bunun nedeni programa değişkeni tanıtmak, programın bu tipe göre bellekte yer açmasını sağlamaktır.
+
+6- Kotlin'de tüm değişkenlerin sınıf olarak bulunması, "ilkel tip" (primitive type) olmadıkları anlamına gelir mi? Arka planda neler oluyor?
+# Kotlin'de Java dilindeki gibi ilkel veri tipleri yerine her bir veri tipinin nesne olarak tutulması amaçlanmıştır. Bu durumda Kotlin, değişkenleri daha esnek ve null değerlerle daha iyi çalışabilen bir dil oluyor.
+    > Kotlin ve Java neredeyse aynı ByteCode'u üretirler. Kotlin'de sınıf halinde oluşturulan bir Int değeri Java da ilkel tip olan int tipine denk gelebilir.
+
+7- "Tip Güvenliği" (Type Safety) kavramını açıklayın.
+# Programın derleme sırasında sıkıntısız çalışması için oluşturulmuş bir terimdir. Değişkenlerin ve nesnelerin türlerinin doğru bir şekilde kullanılmasını gerek kılan bir kavramdır.
+
+8- Bir değişkeni nullable yapmak için ne yapmalıyız?
+# Kotlin'de bir değişkenin nullable yapmak için belirtilen tip isminin sonuna '?' karakterini koymak yeterlidir.
+    > Mesela nullable bir name değişkeni tanımlayalım: val name: String? = null
+
+9- "Null Güvenliği" (Null Safety) kavramını açıklayın.
+# Nullable olarak tanımlanan değerlerden kaynaklanan hataları önlemek için düşünülmüş bir kavramdır. Bir veri null tanımlıysa programın derlemesi sırasında bu belirtilmelidir.
+    > Belirtilmeyen her bir null işlemi programın akışına etkisi olur ve çökmelere yol açar.
+    > Her null değişken kontrol edilerek işlem yapılmalıdır.
+
+10- Bir değişkene null değer atanır ve tip belirtilmezse Kotlin bu değişkeni nasıl yorumlar?
+# Kotlin'de val veya var ile değer ataması yapılırken tür belirtilmezse derleyici otomatik olarak tipini tanımlayacaktır. Aynı şekilde null değer atanarak oluşturulan değişken nullable kabul edilir.
+    > Hata önlemek için program bu değişkeni nullable kabul eder ve kontrol ister.
+
+11- İlkel bir değişkenin nullable olması ile null değer alamaması arasında bellek yönetimi açısından nasıl farklar vardır?
+# İlkel bir nullable değişkende bellek null değerler için ekstra bellek alanı gerekir. Nullable olmayan ilkel veri tipleri için ise bellek yönetimi daha verimlidir çünkü ekstra bellek alanı gerektirmez.
+
+12- Nullable bir değişkenin bir değere sahip olması ile null olması arasında bellek yönetimi açısından nasıl bir fark vardır? Null değer almış bir değişken bellekte yer kaplamaz diyebilir miyiz?
+# Null değer almış bir değişken bellekte yer kaplamaz. Değişkenin bir değeri var ise bu durumda bellekte yer kaplayacaktır.
+
+13- Nullable bir değişkenle çalışırken hangi operatörleri kullanırız? Bu operatörlerin kullanım farkları nelerdir? Hangisini ne zaman kullanmak daha anlamlıdır?
+# Null değişenlerle çalışırken '?' operatörünü sıklıkla kullanırız.
+    > '?.' işareti safe call denilen null değer atamasına sahip değişkenlerle çalışırken hata alınmasını önleyen yapıdır.
+    > '!!' işareti ise nullable olarak tanımlanmış değişkenin programın o aşamasında kesinlikle null olmadığını bildiğimiz için kullanırız.
