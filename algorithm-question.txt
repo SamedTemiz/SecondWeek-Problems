@@ -1,0 +1,13 @@
+ALGORİTMA SORUSU
+Basit bir terminal (konsol) ekranı uygulaması yapacağız. Kullanıcıdan iki sayı alacak ve bu sayılar üzerinde işlem yapacak. Bu uygulamayı yazarken aşağıdaki kurallara dikkat ediniz:
+
+### Kullanıcıyı bir selamlama ekranı ile karşılayın.
+Kullanıcıdan ilk sayıyı girmesini isteyin.
+Kullanıcıdan yapmak istediği matematiksel işlemin karakterini girmesini isteyin.
+Kullanıcıdan ikinci sayıyı isteyin.
+Kullanıcı ikinci sayıyı girdiğinde sonucu ekrana yazdırın ve devam etmek isteyip istemediğini sorun. Devam etmek isterse, karşılama mesajı olmadan 2. adımdan itibaren devam ettirin.
+Uygulama yazılırken dikkat edilecek hususlar:
+
+İstisna Yönetimi (Exception Handling): olası yaşanabilecek problemleri önceden düşünün ve bunların neler olabileceğini ödevinize ekleyin.
+Bu istisnaları nasıl yönetebileceğinizi araştırın ve ek çözümler geliştirin.
+Yapabiliyorsanız kodunuzu fonksiyonlara bölerek, bu fonksiyonlar için testler yazmaya çalışın.
