@@ -6,8 +6,8 @@ class Calculator {
 
     private val operationsChar = listOf('+', '-', '*', '/')
 
-    private var num1: Int? = null
-    private var num2: Int? = null
+    private var num1: Double? = null
+    private var num2: Double? = null
 
     private var selectedOperation: Char? = null
 
@@ -20,23 +20,26 @@ class Calculator {
     }
 
     fun calculate() {
-        var result = 0
+        var result: Double = 0.0
 
         when (selectedOperation) {
             '+' -> {
                 result = num1!! + num2!!
                 println("Sonuç: $result")
             }
+
             '-' -> {
                 result = num1!! - num2!!
                 println("Sonuç: $result")
             }
+
             '*' -> {
                 result = num1!! * num2!!
                 println("Sonuç: $result")
             }
+
             '/' -> {
-                if (num2 != 0) {
+                if (num2 != 0.0) {
                     result = num1!! / num2!!
                     println("Sonuç: $result")
                 } else {
@@ -47,6 +50,7 @@ class Calculator {
                     calculate()
                 }
             }
+
             else -> {
                 println("Geçersiz işlem seçildi.")
             }
@@ -87,14 +91,20 @@ class Calculator {
                 val secondNum = scanner.nextLine()
 
                 if (firstNum.isNotEmpty() && secondNum.isNotEmpty()) {
-                    num1 = firstNum.toInt()
-                    num2 = secondNum.toInt()
+
+                    if (!firstNum.contains(',') && !secondNum.contains(',')) {
+                        num1 = firstNum.toDouble()
+                        num2 = secondNum.toDouble()
+                    } else {
+                        println("Lütfen virgül(,) yerine nokta(.) koyunuz.")
+                    }
+
                 } else {
                     println("Geçersiz giriş. Lütfen sayıları giriniz.")
                 }
 
             } catch (e: NumberFormatException) {
-                println("Geçersiz giriş. Lütfen sadece sayıları giriniz.")
+                println("Geçersiz sayı formatı. Lütfen sadece sayıları giriniz.")
             } catch (e: Exception) {
                 println("Bir hata oluştu: ${e.message}")
             }
@@ -102,11 +112,13 @@ class Calculator {
     }
 
     private fun greetingMessage() {
-        println(" _ _ _     _                   \n" +
-                "| | | |___| |___ ___ _____ ___ \n" +
-                "| | | | -_| |  _| . |     | -_|\n" +
-                "|_____|___|_|___|___|_|_|_|___|\n" +
-                "                               ")
+        println(
+            " _ _ _     _                   \n" +
+                    "| | | |___| |___ ___ _____ ___ \n" +
+                    "| | | | -_| |  _| . |     | -_|\n" +
+                    "|_____|___|_|___|___|_|_|_|___|\n" +
+                    "                               "
+        )
     }
 
 }
